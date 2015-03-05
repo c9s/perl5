@@ -3,16 +3,13 @@ language: c
 compiler:
   - gcc
 
-env: CONFIGURE_OPTION='-Dcc=gcc'
-
 matrix:
   include:
     - compiler: gcc
-      env: CONFIGURE_OPTION='-Duse64bitall -Dcc=gcc' COVERALLS=yes VALGRIND=no DEBUG=yes
+      env: CONFIGURE_OPTION='-Duse64bitall'
     - compiler: gcc
-      env: CONFIGURE_OPTION='-Duse64bitall -Dusethreads -Dcc=gcc' COVERALLS=yes VALGRIND=no DEBUG=yes
+      env: CONFIGURE_OPTION='-Duse64bitall -Dusethreads'
     - compiler: clang
-      env: CONFIGURE_OPTION='-Dcc=clang' COVERALLS=yes VALGRIND=no DEBUG=yes TEST_JOBS=3
 
 install:
   - sudo apt-get update -qq
@@ -20,7 +17,7 @@ install:
   - sudo apt-get build-dep perl perl-base
 
 before_script:
-  - ./Configure -des -Dusedevel -Uversiononly $CONFIGURE_OPTION -Dprefix=$HOME/perl-blead
+  - ./Configure -des -Dusedevel -Uversiononly -Dcc=$CC $CONFIGURE_OPTION -Dprefix=$HOME/perl-blead -DDEBUGGING
 script:
   - make test && make install && $HOME/perl-blead/bin/perlivp
 after_script:
