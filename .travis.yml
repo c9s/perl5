@@ -3,6 +3,9 @@ language: c
 compiler:
   - gcc
 
+# Environment variable definitions can be found here:
+# http://docs.travis-ci.com/user/environment-variables/
+
 matrix:
   include:
     - compiler: gcc
@@ -10,17 +13,19 @@ matrix:
     - compiler: gcc
       env: CONFIGURE_OPTION='-Duse64bitall -Dusethreads'
     - compiler: clang
-
+      env: CONFIGURE_OPTION='-Duse64bitall -Dusethreads'
+    - compiler: clang
 install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq build-essential libtool
   - sudo apt-get build-dep perl perl-base
-
 before_script:
   - ./Configure -des -Dusedevel -Uversiononly -Dcc=$CC $CONFIGURE_OPTION -Dprefix=$HOME/perl-blead -DDEBUGGING
 script:
-  - make test && make install && $HOME/perl-blead/bin/perlivp
+  - make -j4
+  - PERL_SKIP_TESTS="t/porting/authors.t t/porting/manifest.t t/porting/pending-author.t" TEST_JOBS=4 make test_harness
+  - make install
+  - $HOME/perl-blead/bin/perlivp
 after_script:
 cache:
   apt: true
-

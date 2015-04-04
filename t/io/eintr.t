@@ -11,7 +11,11 @@ BEGIN {
     @INC = '../lib';
     require './test.pl';
     skip_all_without_dynamic_extension('Fcntl');
+
+    # The environment variable is defined in http://docs.travis-ci.com/user/ci-environment/
+    skip_all("eintr tests can't be run inside travis-CI VMs") if $ENV{TRAVIS};
 }
+
 
 use warnings;
 use strict;

@@ -30,6 +30,8 @@ use File::Spec;
 require 't/test.pl';
 find_git_or_skip('all');
 
+skip_all("Skip author tests") if grep /$0/i, split(/\s+/, $ENV{PERL_SKIP_TESTS});
+
 my $devnull = File::Spec->devnull;
 my $changes;
 foreach (`git status --porcelain 2>$devnull`) {
