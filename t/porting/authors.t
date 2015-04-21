@@ -10,8 +10,6 @@ use strict;
 require 't/test.pl';
 find_git_or_skip('all');
 
-skip_all("Skip authors test") if grep /$0/i, split(/\s+/, $ENV{PERL_SKIP_TESTS});
-
 # This is the subset of "pretty=fuller" that checkAUTHORS.pl actually needs:
 my $quote = $^O =~ /^mswin/i ? q(") : q(');
 system("git log --pretty=format:${quote}Author: %an <%ae>%n${quote} | $^X Porting/checkAUTHORS.pl --tap -");

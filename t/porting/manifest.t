@@ -35,8 +35,6 @@ require 't/test.pl';
 skip_all("Cross-compiling, the entire source might not be available")
     if $Config{usecrosscompile};
 
-skip_all("Skip manifest tests") if grep /$0/i, split(/\s+/, $ENV{PERL_SKIP_TESTS});
-
 plan('no_plan');
 
 my $manifest = 'MANIFEST';

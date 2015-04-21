@@ -527,6 +527,15 @@ EOT
 	$::path_to_name{$t} = $tname;
       }
     }
+
+    if ($ENV{PERL_SKIP_TESTS}) {
+	@skip_tests = split /\s+/, $ENV{PERL_SKIP_TESTS};
+	for my $t ( @skip_tests ) {
+	    delete $::path_to_name{ $t };
+	}
+    }
+
+
     my $maxlen = 0;
     foreach (@::path_to_name{@tests}) {
 	s/\.\w+\z/ /; # space gives easy doubleclick to select fname
