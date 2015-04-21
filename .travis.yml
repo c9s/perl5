@@ -22,10 +22,11 @@ install:
 before_script:
   - ./Configure -des -Dusedevel -Uversiononly -Dcc=$CC $CONFIGURE_OPTION -Dprefix=$HOME/perl-blead -DDEBUGGING
 script:
-  - make -j4
-  - PERL_SKIP_TESTS="t/porting/authors.t t/porting/manifest.t t/porting/pending-author.t" TEST_JOBS=4 make test_harness
-  - make install
-  - $HOME/perl-blead/bin/perlivp
+  - ./perl -Ilib t/io/eintr.t
+  # - make -j4
+  # - PERL_SKIP_TESTS="t/porting/authors.t t/porting/manifest.t t/porting/pending-author.t" TEST_JOBS=4 make test_harness
+  # - make install
+  # - $HOME/perl-blead/bin/perlivp
 after_script:
 cache:
   apt: true
