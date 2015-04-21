@@ -13,7 +13,7 @@ BEGIN {
     skip_all_without_dynamic_extension('Fcntl');
 
     # The environment variable is defined in http://docs.travis-ci.com/user/ci-environment/
-    skip_all("eintr tests can't be run inside travis-CI VMs") if $ENV{TRAVIS};
+    # skip_all("eintr tests can't be run inside travis-CI VMs") if $ENV{TRAVIS};
 }
 
 
