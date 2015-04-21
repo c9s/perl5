@@ -524,13 +524,11 @@ EOT
     foreach my $t (@tests) {
       unless (exists $::path_to_name{$t}) {
 	my $tname = "t/$t";
-
 	print $tname, "\n";
 
 	$::path_to_name{$t} = $tname;
       }
     }
-
 
     # if ($ENV{PERL_SKIP_TESTS}) {
     #     @skip_tests = split /\s+/, $ENV{PERL_SKIP_TESTS};

@@ -20,7 +20,6 @@ install:
   - sudo apt-get install -qq build-essential libtool
   - sudo apt-get build-dep perl perl-base
 before_script:
-  - cat /etc/is_vagrant_vm
   - ./Configure -des -Dusedevel -Uversiononly -Dcc=$CC $CONFIGURE_OPTION -Dprefix=$HOME/perl-blead -DDEBUGGING
 script:
   - make -j4
