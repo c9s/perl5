@@ -194,6 +194,8 @@ for (@tests) {
     }
 }
 
+print join ' ', @tests;
+
 my %options;
 
 my $type = 'perl';

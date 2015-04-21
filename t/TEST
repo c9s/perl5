@@ -524,16 +524,21 @@ EOT
     foreach my $t (@tests) {
       unless (exists $::path_to_name{$t}) {
 	my $tname = "t/$t";
+
+	print $tname, "\n";
+
 	$::path_to_name{$t} = $tname;
       }
     }
 
-    if ($ENV{PERL_SKIP_TESTS}) {
-	@skip_tests = split /\s+/, $ENV{PERL_SKIP_TESTS};
-	for my $t ( @skip_tests ) {
-	    delete $::path_to_name{ $t };
-	}
-    }
+
+    # if ($ENV{PERL_SKIP_TESTS}) {
+    #     @skip_tests = split /\s+/, $ENV{PERL_SKIP_TESTS};
+    #     for my $t (@skip_tests) {
+    #         delete $::path_to_name{ $t };
+    #     }
+    # }
+    die('end');
 
 
     my $maxlen = 0;
